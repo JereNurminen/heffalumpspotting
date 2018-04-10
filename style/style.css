@@ -1,0 +1,115 @@
+
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700');
+
+html {
+	font-family: 'Source Code Pro', monospace;
+}
+
+body {
+
+}
+
+div.container {
+	width: 30vw;
+	margin: 50px auto;
+	min-width: 400px;
+}
+
+div.content {
+	padding: 0 40px 20px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+	overflow: hidden;
+}
+
+nav {
+
+}
+
+nav ul {
+	display: flex;
+	align-content: space-between;
+	justify-content: space-between;
+	padding: 0 5px;
+}
+
+nav ul li {
+	list-style: none;
+}
+
+nav ul li a {
+	color: #000000;
+}
+
+form {
+	margin: 20px 0 0;
+}
+
+input[type="text"], textarea {
+	border: 1px solid rgba(0,0,0,0.1);
+	box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+	text-align: center;
+}
+
+label {
+	text-align: center;
+}
+
+div.input-holder {
+	display: flex;
+	flex-direction: column;
+	margin: 0px 0 10px;
+}
+
+div.button-holder {
+	display: flex;
+	justify-content: space-between;
+}
+
+button.submit,
+button.cancel {
+	cursor: pointer;
+}
+
+button.submit {
+	padding: 5px 30px;
+	background-color: #60d394;
+	border: none;
+	border-radius: 2px;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+button.cancel {
+	background-color: transparent;
+	border: none;
+	text-decoration: underline;
+}
+
+div.message-container div {
+	margin: 0 -40px 5px;
+	padding: 5px 40px;
+	text-align: center;
+	color: #ffffff;
+}
+
+div.error-message {
+	background-color: #ee6055;
+}
+
+div.success-message {
+	background-color: #60d394;
+}
+
+@media (max-width: 500px) {
+
+	div.container {
+		min-width: 90vw;
+	}
+
+	nav ul {
+		flex-direction: column;
+	}
+
+}
