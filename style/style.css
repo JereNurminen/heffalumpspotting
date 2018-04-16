@@ -50,6 +50,7 @@ input[type="text"], textarea {
 	border: 1px solid rgba(0,0,0,0.1);
 	box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
 	text-align: center;
+	width: 100%;
 }
 
 label {
@@ -72,7 +73,8 @@ button.cancel {
 	cursor: pointer;
 }
 
-button.submit {
+.submit {
+	cursor: pointer;
 	padding: 5px 30px;
 	background-color: #60d394;
 	border: none;
@@ -81,7 +83,8 @@ button.submit {
 	font-weight: bold;
 }
 
-button.cancel {
+.cancel {
+	cursor: pointer;
 	background-color: transparent;
 	border: none;
 	text-decoration: underline;
