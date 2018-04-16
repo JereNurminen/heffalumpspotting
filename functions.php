@@ -1,5 +1,6 @@
 <?php
 
+
 function include_head($title) {
 	$html_head = <<<HEREDOC
 	<head>
@@ -13,13 +14,14 @@ HEREDOC;
 }
 
 function include_navigation($active) {
+	$if = function($condition, $true, $false) { return $condition ? $true : $false; };
 	$html_nav = <<<HEREDOC
 	<nav>
 		<ul>
-			<li><a href="">Home</a></li>
-			<li><a href="">Add a spotting</a></li>
-			<li><a href="">Spottings</a></li>
-			<li><a href="">Settings</a></li>
+			<li><a {$if($active == "index", "class='active'", "")} href="index.php">Home</a></li>
+			<li><a {$if($active == "add_observation", "class='active'", "")} href="add_observation.php">Add a spotting</a></li>
+			<li><a {$if($active == "list_spottings", "class='active'", "")} href="">Spottings</a></li>
+			<li><a {$if($active == "settings", "class='active'", "")} href="">Settings</a></li>
 		</ul>
 	</nav>
 HEREDOC;

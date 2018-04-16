@@ -42,6 +42,11 @@ nav ul li a {
 	color: #000000;
 }
 
+nav ul li a.active {
+    color: #60d394;
+    font-weight: bold;
+}
+
 form {
 	margin: 20px 0 0;
 }
