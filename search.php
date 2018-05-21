@@ -1,16 +1,13 @@
 <?php 
 	require_once('functions.php');
-	$db = get_db_connection();
+	require_once('classes/SpottingPDO.php');
+	
+	$db = new SpottingPDO();
 
 	if (isset($_SERVER["CONTENT_TYPE"]) && $_SERVER["CONTENT_TYPE"] === 'application/json') {
-		$query = '%'.$_GET['q'].'%';
+		$search_results = $db -> search_by_name($_GET['q']);
 
-		$select_by_id_sql = 'SELECT * FROM observations WHERE spotter LIKE :q;';
-		$select_by_id_stmt = $db -> prepare($select_by_id_sql);
-		$select_by_id_stmt -> bindValue(':q', $query, PDO::PARAM_STR);
-		$select_by_id_stmt -> execute();
-
-		echo json_encode($select_by_id_stmt -> fetchAll());
+		echo json_encode($search_results);
 	} else {
 ?>
 
@@ -24,11 +21,14 @@
 				<div class="search">
 					<input id="search" type="text" placeholder="Spotter name" oninput="search(this)">
 				</div>
+				<div id="search-results">
+
+				</div>
 			</div>
 		</div>		
 	</body>
 </html>
 
-<?php 
+<?php
 	}
 ?>

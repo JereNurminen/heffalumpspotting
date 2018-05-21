@@ -1,31 +1,22 @@
 <?php
 
 	require_once('classes/Observation.php');
+	require_once('classes/SpottingPDO.php');	
 	require_once('functions.php');
-
-	$db = get_db_connection();
+	
+	$db = new SpottingPDO();
 	session_start();
 
 	if ($_SESSION['observation']) {
 		$observation = $_SESSION['observation'];
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$sql = 'INSERT INTO observations (spotter, amount, place, description, spot_time) VALUES (:spotter, :amount, :place, :description, :spot_time); ';
-			$stmt = $db -> prepare($sql);
-			$stmt -> bindValue(':spotter', 		$observation -> spotter, 		PDO::PARAM_STR);
-			$stmt -> bindValue(':amount', 		$observation -> amount, 		PDO::PARAM_INT);
-			$stmt -> bindValue(':place',		$observation -> place, 			PDO::PARAM_STR);
-			$stmt -> bindValue(':description',	$observation -> description, 	PDO::PARAM_STR);
-			$stmt -> bindValue(':spot_time',	$observation -> date, 			PDO::PARAM_STR);
-			$stmt -> execute();
-			
+			$db -> save($observation);
 			unset($_SESSION['observation']);
 		}
 	} else {
 		header("location: add_observation.php");
 		exit;
 	}
-
-
 
 ?>
 

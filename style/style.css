@@ -175,6 +175,23 @@ table.spotting-table td.row_id {
 	border: none;
 }
 
+.search {
+	margin-top: 15px;
+}
+
+.search input {
+
+}
+
+#search-results {
+	display: flex;
+	flex-direction: column;
+}
+
+#search-results span {
+	margin: 15px 0 0;
+}
+
 @media (max-width: 500px) {
 
 	div.container {
