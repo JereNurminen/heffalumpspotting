@@ -7,7 +7,7 @@ function renderInfo(observation) {
 
 function search(event) {
 	const result_box = document.querySelector('#search-results');	
-	const query = event.value;
+	const query = event.value.trim();
 
 	if (query.trim() === '') {
 		result_box.innerHTML = '';
