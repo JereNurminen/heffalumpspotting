@@ -1,11 +1,13 @@
 <?php 
 	require_once('classes/Observation.php');
 	require_once('functions.php');
+	session_start();
 
 	$success = False;
 	$errors = [];
 	$isCancelled = isset($_POST['cancel']);
 	$isSubmitted = isset($_POST['submit']);
+	$isModifying = isset($_GET['modify']);
 	$observation = new Observation();
 
 	if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isSubmitted) {
@@ -23,7 +25,23 @@
 	// to determine whether to show a success message or not. 
 	if (!count($observation -> errors) && $isSubmitted) {
 		$success = True;
+		$_SESSION['observation'] = $observation;
+		header("location: confirmation.php");
+		exit;
 	}
+
+	if ($isModifying && isset($_SESSION['observation'])) {
+		$observation = $_SESSION['observation'];
+	} else {
+		unset($_SESSION['observation']);
+	}
+
+	if ($isCancelled) {
+		unset($_SESSION['observation']);
+		unset($observation);
+	}
+
+
 
 ?>
 
@@ -32,7 +50,7 @@
 	<?php include_head('Add 🐘 Spotting'); ?>
 	<body>
 		<div class="container">
-			<?php include_navigation('add_observation'); ?>
+			<?php include_navigation(array('active' => 'add_observation')); ?>
 			<div class="content">
 				<div class="message-container">
 					<?php foreach ($errors as $error): ?>
@@ -46,31 +64,31 @@
 						</div>
 					<?php endif; ?>
 				</div>
-				<form action="" method="POST">
+				<form action="" method="POST" class="observation-form">
 				
 					<div class="input-holder">
 						<label for="spotter">Your name</label>
-						<input id="spotter" name="spotter" type="text" value="<?php if (count($errors)) echo $observation -> spotter ?>"></input>
+						<input id="spotter" name="spotter" type="text" value="<?php if (isset($observation)) echo $observation -> spotter ?>">
 					</div>
 
 					<div class="input-holder">
 						<label for="amount">Amount of heffalumps</label>
-						<input id="amount" name="amount" type="text" value="<?php if (count($errors)) echo $observation -> amount ?>"></input>
+						<input id="amount" name="amount" type="text" value="<?php if (isset($observation)) echo $observation -> amount ?>">
 					</div>
 
 					<div class="input-holder">
 						<label for="place">Where you saw them (Zip Code)</label>
-						<input id="place" name="place" type="text" value="<?php if (count($errors)) echo $observation -> place ?>"></input>
+						<input id="place" name="place" type="text" value="<?php if (isset($observation)) echo $observation -> place ?>">
 					</div>
 
 					<div class="input-holder">
 						<label for="date">When you saw them? (YYYY-MM-DD)</label>
-						<input id="date" name="date" type="text" value="<?php if (count($errors)) echo $observation -> date ?>"></input>
+						<input id="date" name="date" type="text" value="<?php if (isset($observation)) echo $observation -> date ?>">
 					</div>
 
 					<div class="input-holder">
 						<label for="description">Description of the encounter</label>
-						<textarea id="description" name="description"><?php if (count($errors)) echo $observation -> description ?></textarea>
+						<textarea id="description" name="description"><?php if (isset($observation)) echo $observation -> description ?></textarea>
 					</div>
 
 					<div class="button-holder">

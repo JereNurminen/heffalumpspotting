@@ -2,7 +2,7 @@
 class Observation {
 
     private $spotter = "";
-    private $amount = 0;
+    private $amount = null;
     private $place = "";
     private $description = "";
     private $date = null;

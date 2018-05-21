@@ -23,6 +23,19 @@ div.content {
 	overflow: hidden;
 }
 
+div.content.confirmation {
+	display: flex;
+	flex-direction: column;
+}
+
+div.content.confirmation p.observation {
+
+}
+
+div.content.confirmation p.quote {
+	font-style: italic;
+}
+
 nav {
 
 }
@@ -47,7 +60,7 @@ nav ul li a.active {
     font-weight: bold;
 }
 
-form {
+form.observation-form {
 	margin: 20px 0 0;
 }
 
@@ -71,6 +84,7 @@ div.input-holder {
 div.button-holder {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 button.submit,
@@ -78,13 +92,14 @@ button.cancel {
 	cursor: pointer;
 }
 
-.submit {
+.submit, .confirm, .details, .delete{
 	cursor: pointer;
 	padding: 5px 30px;
 	background-color: #60d394;
 	border: none;
 	border-radius: 2px;
 	color: #ffffff;
+	font-size: 13px;
 	font-weight: bold;
 }
 
@@ -93,6 +108,12 @@ button.cancel {
 	background-color: transparent;
 	border: none;
 	text-decoration: underline;
+	font-size: 13px;
+	color: #000;
+}
+
+.delete {
+	background-color: #d65376;
 }
 
 div.message-container div {
@@ -108,6 +129,50 @@ div.error-message {
 
 div.success-message {
 	background-color: #60d394;
+}
+
+div.observation {
+	box-shadow: 0px 5px 7px rgba(0,0,0,0.1);
+	border-radius: 5px;
+	padding: 5px 15px;
+	margin: 20px 0 0;
+	border: solid rgba(0,0,0,0.05) 1px;
+}
+
+table.spotting-table {
+	width: 100%;
+	border-spacing: 0px 10px;
+}
+
+table.spotting-table tbody.observation:first-child {
+	box-shadow: none;
+}
+
+table.spotting-table tbody.observation {
+	box-shadow: 0 5px 5px rgba(0,0,0,0.05);
+	border-radius: 3px;
+}
+
+table.spotting-table td {
+	padding: 5px 5px;
+	text-align: center;
+	border-right: solid rgba(0,0,0,0.15) 1px;
+}
+
+table.spotting-table td:last-child {
+	border: none;
+}
+
+table.spotting-table tbody.observation div.button-holder {
+	justify-content: space-evenly;
+}
+
+table.spotting-table td.row_id {
+	font-weight: bold;
+	padding: 0 15px;
+	opacity: 0.5;
+	color: rgba(0,0,0,0.25);
+	border: none;
 }
 
 @media (max-width: 500px) {
